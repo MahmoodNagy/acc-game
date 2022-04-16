@@ -87,7 +87,7 @@ handlePermission();
 	
    let acl = new Accelerometer({frequency: 10});
    
-   let double_check = 0;
+   var is_counting = false;
    let shakes_count = 0;
 
 acl.addEventListener('reading', () => {
@@ -98,14 +98,14 @@ acl.addEventListener('reading', () => {
   updateFieldIfNotNull('accy', acl.y);
   updateFieldIfNotNull('accz', acl.z);
 
-	if(acl.x > 5) {
-		double_check = 1;
-	}
-
-	else if((acl.x < -5) && (double_check == 1)) {
-		shakes_count += 1;
-		double_check = 0;
-	}
+if (acl.x > 5) {
+  is_counting = true;
+} else if (is_counting && time < acl.x < -5) {
+  shakes_count += 1;
+  is_counting = false;
+} else {
+  is_counting = true;
+}
 
    
    updateFieldIfNotNull('shakes', shakes_count);
