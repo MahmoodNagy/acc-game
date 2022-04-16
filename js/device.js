@@ -98,12 +98,15 @@ acl.addEventListener('reading', () => {
   updateFieldIfNotNull('accy', acl.y);
   updateFieldIfNotNull('accz', acl.z);
 
-if (is_counting && acl.x > 5) {
-  is_counting = true;
-} else if (is_counting && acl.x < -5) {
-  is_counting = false;
-  shakes_count += 1;
-  break;
+if (!is_counting) {
+  if(acl.x > 5) {
+    is_counting = true;
+  }
+} else if (is_counting) {
+    if (acl.x < -5) {
+      is_counting = false;
+      shakes_count += 1;
+    }
 } else {
   is_counting = false;
 }
