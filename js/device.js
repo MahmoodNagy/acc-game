@@ -99,7 +99,7 @@ acl.addEventListener('reading', () => {
   updateFieldIfNotNull('accz', acl.z);
 
   if (acl.x > 5) {
-  	is_counting = true;
+  	//is_counting = true;
   	if (is_counting) {
 		if(acl.x < -5){
         		shakes_count += 1;
