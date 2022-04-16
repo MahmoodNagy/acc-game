@@ -100,7 +100,7 @@ acl.addEventListener('reading', () => {
 
 if (acl.x > 5) {
   is_counting = true;
-} else if (is_counting && time < acl.x < -5) {
+} else if (is_counting && acl.x < -5) {
   shakes_count += 1;
   is_counting = false;
 } else {
