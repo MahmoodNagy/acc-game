@@ -86,7 +86,7 @@ handlePermission();
 	}
 	
    let acl = new Accelerometer({frequency: 10});
-   var shakes_count = 0;
+   let int shakes_count = 0;
 
 acl.addEventListener('reading', () => {
   console.log("Acceleration along the X-axis " + acl.x);
