@@ -86,6 +86,8 @@ handlePermission();
 	}
 	
    let acl = new Accelerometer({frequency: 10});
+   let shakes_count = 0;
+
 acl.addEventListener('reading', () => {
   console.log("Acceleration along the X-axis " + acl.x);
   console.log("Acceleration along the Y-axis " + acl.y);
@@ -93,6 +95,12 @@ acl.addEventListener('reading', () => {
   updateFieldIfNotNull('accx', acl.x);
   updateFieldIfNotNull('accy', acl.y);
   updateFieldIfNotNull('accz', acl.z);
+if (acl.x > 5 || acl.x < -5) {
+   shakes_count += 1;
+ 
+}
+   
+   updateFieldIfNotNull('shakes', shakes_count);
 
 });
 
