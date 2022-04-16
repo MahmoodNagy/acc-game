@@ -102,7 +102,7 @@ acl.addEventListener('reading', () => {
 		double_check = 1;
 	}
 
-	if((acl.x < -5) && (double_check == 1)) {
+	else if((acl.x < -5) && (double_check == 1)) {
 		shakes_count += 1;
 		double_check = 0;
 	}
