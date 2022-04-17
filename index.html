@@ -169,14 +169,16 @@
             }
             else if(!startFlag){
                 acl.stop();
-                var rand = document.getElementById("rand").innerHTML;
-                var shakes = document.getElementById("shakes").innerHTML;
+//                var rand = document.getElementById("rand").innerHTML;
+//                var shakes = document.getElementById("shakes").innerHTML;
                 
-                 updateFieldIfNotNull('newRandom', rand);
-                 updateFieldIfNotNull('newShakes', shakes);
-                
-                let points = checkWinner(rand, shakes);
-                updateFieldIfNotNull('points', points);
+                var value = document.getElementById("rand").innerHTML;
+                console.log(value);
+//                 updateFieldIfNotNull('newRandom', rand);
+//                 updateFieldIfNotNull('newShakes', shakes);
+//                
+//                let points = checkWinner(rand, shakes);
+//                updateFieldIfNotNull('points', points);
 
             }
         }
