@@ -169,14 +169,14 @@
             }
             else if(!startFlag){
                 acl.stop();
-                var rand = document.getElementById("rand").value;
-                var shakes = document.getElementById("shakes").value;
+                var rand = document.getElementById("rand").innerHTML;
+                var shakes = document.getElementById("shakes").innerHTML;
                 
                  updateFieldIfNotNull('newRandom', rand);
                  updateFieldIfNotNull('newShakes', shakes);
                 
-//                let points = checkWinner(rand, shakes);
-//                updateFieldIfNotNull('points', points);
+                let points = checkWinner(rand, shakes);
+                updateFieldIfNotNull('points', points);
 
             }
         }
