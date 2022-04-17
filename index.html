@@ -31,11 +31,12 @@
         </div>
 		
 		<input onclick="ToggleCalculations()" type="button" id="startgame" value="Start"/>
+        <h3>Correct shakes count is a random number between 1 : 15</h3>
+        <p>Will be deleted when database works well: <span id="random">0</span></p>
+        
 		<h3>Published Messages: <span id='msgCount'></h3>
 		<div class="main">
-            
-            <h2>Correct shakes count is a random number between 1 : 15</h2>
-		
+        		
 			<table class="data-table">
 				<tr class="table-title">
 					<th colspan="3">Acceleration</th>
@@ -51,8 +52,10 @@
 					<td id="accz">0</td>
 				</tr>
 			</table>
-            <p>Number of your shakes</p>
-            <p id="shakes">0</p>
+            <p>Number of your shakes: <span id="shakes">0</span></p>
+            <br>
+            
+            <p>Your points: <span id="points">0</span></p>
             <br>
 
 		</div>
@@ -89,27 +92,36 @@
 	<script type="text/javascript" src="js/device.js"></script>
 	<script type="text/javascript" src="js/mqttconnect.js"></script>
     <script>
+        //Generate Random number between (1:15)
+        function generateRandom(){
+            let x = Math.floor((Math.random() * 10) + 6);
+            return x;
+        }
+        
+        function checkWinner(randomNumber, shakesCount){
+            let points = 0;
+            if(shakesCount == randomNumber){
+                points = 10;
+            }else if(shakesCount == (randomNumber - 1)) {
+                points = 7;
+            }else if(shakesCount == (randomNumber - 2)) {
+                points = 5;
+            }else{
+                points = 0;
+            }
+            
+            return points;
+            
+        }
+        
+        function updateFieldIfNotNull(fieldName, value, precision=10){
+            if (value != null)
+                document.getElementById(fieldName).innerHTML = value.toFixed(precision);
+            }
         
         let acl = new Accelerometer({frequency: 10});
-
-        var startFlag = false;
-        function ToggleCalculations(){
-            startFlag = !startFlag;
-            if(startFlag){
-                 mainCalculations();
-            }
-            else if(!startFlag){
-                acl.stop();
-            }
-        }
-
-
-           function updateFieldIfNotNull(fieldName, value, precision=10){
-              if (value != null)
-                document.getElementById(fieldName).innerHTML = value.toFixed(precision);
-                }
         
-        function mainCalculations(){
+                function mainCalculations(){
 
             var is_counting = false;
             let shakes_count = 0;
@@ -123,20 +135,21 @@
               updateFieldIfNotNull('accy', acl.y);
               updateFieldIfNotNull('accz', acl.z);
 
-            if (!is_counting) {
-              if(acl.x > 5) {
-                is_counting = true;
-              }
-            } else if (is_counting) {
-                if (acl.x < -5) {
+                if (!is_counting) {
+                  if(acl.x > 5) {
+                    is_counting = true;
+                  }
+                } else if (is_counting) {
+                    if (acl.x < -5) {
+                      is_counting = false;
+                      shakes_count += 1;
+                    }
+                } else {
                   is_counting = false;
-                  shakes_count += 1;
                 }
-            } else {
-              is_counting = false;
-            }
 
-               updateFieldIfNotNull('shakes', shakes_count);
+                updateFieldIfNotNull('shakes', shakes_count);
+                return shakes_count;
 
 
             });
@@ -144,6 +157,29 @@
             acl.start();
             
         }
+        
+        let randomNumber = generateRandom();
+        let shakesNumber = mainCalculations();
+
+        var startFlag = false;
+        function ToggleCalculations(){
+            startFlag = !startFlag;
+            if(startFlag){
+                mainCalculations();
+                updateFieldIfNotNull('random', randomNumber);
+            }
+            else if(!startFlag){
+                acl.stop();
+                let points = checkWinner(randomNumber, shakesNumber);
+                updateFieldIfNotNull('points', points);
+
+            }
+        }
+
+
+
+        
+
 
     </script>
 </body>
