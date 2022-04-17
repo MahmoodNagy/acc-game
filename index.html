@@ -30,7 +30,7 @@
 		
         </div>
 		
-		<input onclick="startCalculations()" type="button" id="startgame" value="Start"/>
+		<input onclick="ToggleCalculations()" type="button" id="startgame" value="Start"/>
 		<h3>Published Messages: <span id='msgCount'></h3>
 		<div class="main">
             
@@ -89,11 +89,21 @@
 	<script type="text/javascript" src="js/device.js"></script>
 	<script type="text/javascript" src="js/mqttconnect.js"></script>
     <script>
+        var startFlag = false;
+        function ToggleCalculations(){
+            startFlag = !startFlag;
+            if(startFlag){
+                 mainCalculations();
+            }
+        }
+
+
            function updateFieldIfNotNull(fieldName, value, precision=10){
               if (value != null)
                 document.getElementById(fieldName).innerHTML = value.toFixed(precision);
                 }
-        function startCalculations(){
+        
+        function mainCalculations(){
                         let acl = new Accelerometer({frequency: 10});
 
             var is_counting = false;
