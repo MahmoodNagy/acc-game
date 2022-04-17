@@ -57,6 +57,9 @@
             
             <p>Your points: <span id="points">0</span></p>
             <br>
+            
+            <p id="newRandom">0</p>
+            <p id="newShakes">0</p>
 
 		</div>
 				<input type="button" id="results" value="showresult" onclick="showresults();"/>
@@ -165,11 +168,15 @@
                 updateFieldIfNotNull('random', randomNumber);
             }
             else if(!startFlag){
-                acl.stop();
                 var rand = document.getElementById("rand").value;
                 var shakes = document.getElementById("shakes").value;
-                let points = checkWinner(rand, shakes);
-                updateFieldIfNotNull('points', points);
+                
+                 updateFieldIfNotNull('newRandom', rand);
+                 updateFieldIfNotNull('newShakes', shakes);
+                
+//                let points = checkWinner(rand, shakes);
+//                updateFieldIfNotNull('points', points);
+                acl.stop();
 
             }
         }
