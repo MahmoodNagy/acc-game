@@ -32,7 +32,7 @@
 		
 		<input onclick="ToggleCalculations()" type="button" id="startgame" value="Start"/>
         <h3>Correct shakes count is a random number between 1 : 15</h3>
-        <p>Will be deleted when database works well: <span id="random">0</span></p>
+        <p>Will be deleted when database works well: <span id="random">1</span></p>
         
 		<h3>Published Messages: <span id='msgCount'></h3>
 		<div class="main">
@@ -58,8 +58,7 @@
             <p>Your points: <span id="points">0</span></p>
             <br>
             
-            <p id="newRandom">0</p>
-            <p id="newShakes">0</p>
+            <p>Your new random: <span id="new">0</span></p>
 
 		</div>
 				<input type="button" id="results" value="showresult" onclick="showresults();"/>
@@ -172,8 +171,9 @@
 //                var rand = document.getElementById("rand").innerHTML;
 //                var shakes = document.getElementById("shakes").innerHTML;
                 
-                var value = document.getElementById("rand").innerHTML;
-                console.log(value);
+                var r = document.getElementById("rand").innerHTML;
+                updateFieldIfNotNull('new', r);
+
 //                 updateFieldIfNotNull('newRandom', rand);
 //                 updateFieldIfNotNull('newShakes', shakes);
 //                
