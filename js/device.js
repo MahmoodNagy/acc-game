@@ -80,6 +80,8 @@ function report(state) {
 
 handlePermission();
    //End of permisiion
+
+/*
    function updateFieldIfNotNull(fieldName, value, precision=10){
   if (value != null)
     document.getElementById(fieldName).innerHTML = value.toFixed(precision);
@@ -118,6 +120,8 @@ if (!is_counting) {
 });
 
 acl.start();
+
+*/
 
 /*
    
