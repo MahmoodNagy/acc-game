@@ -149,28 +149,26 @@
                 }
 
                 updateFieldIfNotNull('shakes', shakes_count);
-                return shakes_count;
-
 
             });
 
             acl.start();
             
         }
-        
-        let randomNumber = generateRandom();
-        let shakesNumber = mainCalculations();
 
         var startFlag = false;
         function ToggleCalculations(){
             startFlag = !startFlag;
             if(startFlag){
                 mainCalculations();
+                let randomNumber = generateRandom();
                 updateFieldIfNotNull('random', randomNumber);
             }
             else if(!startFlag){
                 acl.stop();
-                let points = checkWinner(randomNumber, shakesNumber);
+                var rand = document.getElementById("rand").value;
+                var shakes = document.getElementById("shakes").value;
+                let points = checkWinner(rand, shakes);
                 updateFieldIfNotNull('points', points);
 
             }
