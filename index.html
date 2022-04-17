@@ -30,7 +30,7 @@
 		
         </div>
 		
-		<input type="button" id="startgame" value="Start"/>
+		<input onclick="startCalculations()" type="button" id="startgame" value="Start"/>
 		<h3>Published Messages: <span id='msgCount'></h3>
 		<div class="main">
             
@@ -93,8 +93,8 @@
               if (value != null)
                 document.getElementById(fieldName).innerHTML = value.toFixed(precision);
                 }
-
-            let acl = new Accelerometer({frequency: 10});
+        function startCalculations(){
+                        let acl = new Accelerometer({frequency: 10});
 
             var is_counting = false;
             let shakes_count = 0;
@@ -127,7 +127,8 @@
             });
 
             acl.start();
-        
+        }
+
     </script>
 </body>
 </html>
