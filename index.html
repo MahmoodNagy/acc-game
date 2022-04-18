@@ -30,9 +30,11 @@
 		
         </div>
 		
+        <br>
+        
 		<input onclick="ToggleCalculations()" type="button" id="startgame" value="Start"/>
-        <h3>Correct shakes count is a random number between 1 : 15</h3>
-        <p>Will be deleted when database works well: <span id="random">1</span></p>
+        <p>Correct shakes count is a random number between 1 : 15</p>
+        <p style="visibility: hidden">Will be deleted when database works well: <span id="random">1</span></p>
         
 		<h3>Published Messages: <span id='msgCount'></h3>
 		<div class="main">
@@ -55,11 +57,6 @@
             <p>Number of your shakes: <span id="shakes">0</span></p>
             <br>
             
-            <p>Your points: <span id="points">0</span></p>
-            <br>
-            
-            <p>Your new random: <span id="new">0</span></p>
-
 		</div>
 				<input type="button" id="results" value="showresult" onclick="showresults();"/>
 
@@ -176,15 +173,14 @@
                       var payload = {
                                     //"d": {
 
-
-                                        "x": parseFloat(acl.x.toFixed(2)),
-                                        "y": parseFloat(acl.y.toFixed(2)),
-                                        "z": parseFloat(acl.z.toFixed(2)),
-                                        "idClients": ClientID.toString()
+                                        "client_shakes": document.getElementById("shakes").textContent,
+                                        "random_shakes": document.getElementById("random").textContent,
+                                        "client_id": ClientID.toString(),
+                    
                                     //}
                                 };
                       var message = new Paho.MQTT.Message(JSON.stringify(payload));
-                      message.destinationName = "Game";
+                      message.destinationName = "Start";
                       try {
 
 
@@ -204,7 +200,7 @@
                                     //setTimeout(connectDevice(), 1000);
                                 }
                            }
-                    }, 100);
+                    }, 10);
                 
             }
             else if(!startFlag){
