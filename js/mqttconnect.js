@@ -58,6 +58,8 @@ function Start(){
 	
 		
 		// Send MQTT Message 
+
+/*
     setInterval(function() {
   //Your code
   //Send data
@@ -97,6 +99,7 @@ function Start(){
        }
 }, 100); //Every 1000ms = 1sec
 
+*/
 
 	  //console.log(MQTT_Subscribe_Topic);
 	//document.getElementById("winer1").innerHTML = MQTT_Subscribe_Topic;
