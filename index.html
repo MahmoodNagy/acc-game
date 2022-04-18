@@ -165,8 +165,47 @@
                 mainCalculations();
                 let randomNumber = generateRandom();
                 updateFieldIfNotNull('random', randomNumber, 0);
-                  var message = new Paho.MQTT.Message(JSON.stringify(payload));
-                 message.destinationName = "StartCase";
+                
+                //SEND MQTT MESSAGE
+                    setInterval(function() {
+                      //Your code
+                      //Send data
+                      //var x=Math.floor(Math.random() * 10000);
+                      var ClientID = document.getElementById("txt_MQTT_Client_ID").value;
+                      if (isConnected && button_clicked) {
+                      var payload = {
+                                    //"d": {
+
+
+                                        "x": parseFloat(acl.x.toFixed(2)),
+                                        "y": parseFloat(acl.y.toFixed(2)),
+                                        "z": parseFloat(acl.z.toFixed(2)),
+                                        "idClients": ClientID.toString()
+                                    //}
+                                };
+                      var message = new Paho.MQTT.Message(JSON.stringify(payload));
+                      message.destinationName = "Game";
+                      try {
+
+
+                               //Set_New_Console_Msg("Published " + "\"" + document.getElementById("txt_MQTT_Msg").value + "\"" + "to MQTT Topic: " + "\"" +  document.getElementById("txt_MQTT_Publish_Topic").value + "\"");
+                                changeConnectionStatusImage("images/connected.svg");
+                                document.getElementById("connection").innerHTML = "connected";
+
+                                MQTT_Client.send(message);
+
+                                } catch (err) {
+
+                                    console.error(err);
+                                    isConnected = false;
+                                    //MQTTconnect();
+                                    changeConnectionStatusImage("images/disconnected.svg");
+                                    document.getElementById("connection").innerHTML = "disconnected";
+                                    //setTimeout(connectDevice(), 1000);
+                                }
+                           }
+                    }, 100);
+                
             }
             else if(!startFlag){
                 acl.stop();
