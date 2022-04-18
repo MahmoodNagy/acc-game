@@ -118,7 +118,7 @@
         
         function updateFieldIfNotNull(fieldName, value, precision=10){
             if (value != null)
-                document.getElementById(fieldName).innerHTML = value.toFixed(precision);
+                document.getElementById(fieldName).innerHTML = value.toFixed(2);
             }
         
         let acl = new Accelerometer({frequency: 10});
