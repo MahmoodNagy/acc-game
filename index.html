@@ -165,6 +165,8 @@
                 mainCalculations();
                 let randomNumber = generateRandom();
                 updateFieldIfNotNull('random', randomNumber, 0);
+                  var message = new Paho.MQTT.Message(JSON.stringify(payload));
+                 message.destinationName = "StartCase";
             }
             else if(!startFlag){
                 acl.stop();
