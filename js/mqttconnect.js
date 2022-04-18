@@ -125,7 +125,8 @@ function Stop(){
       //Set_New_Console_Msg("Subscribed to MQTT Topic: " + "\"" + MQTT_Subscribe_Topic + "\"" );
     }
 
-   
+
+/* 
 function showresults()
 {
 	
@@ -163,7 +164,7 @@ function showresults()
 		
   	
 }	
-    
+*/
 	
 	
 
@@ -196,7 +197,10 @@ function showresults()
       }
     }
 
+
+
     // called when a message arrives
+/*
     function onMessageArrived(message) {
 		//document.getElementById("winer1").innerHTML = message.payloadString;
 		console.log(message.payloadString);
@@ -211,7 +215,7 @@ function showresults()
 
       //Set_New_Console_Msg("MQTT Message Recieved. "  + " Message: " + "\"" +  message.payloadString + "\"" + " MQTT Topic: " + "\"" + message.destinationName + "\"" + " QoS Value: " + "\"" + message.qos + "\"");
     } 
-
+*/
 
     // Document Ready Event
     $(document).ready( function() {
