@@ -116,7 +116,6 @@ function Stop(){
 }
 
 
-/*
     // Subscribe to MQTT Topic
     function mqtt_Subscribe_to_Topic(){
       MQTT_Subscribe_Topic = "Result";
@@ -164,7 +163,9 @@ function showresults()
 		
   	
 }	
-  	
+    
+	
+	
 
     // called when the client connects
     function onConnect() {
@@ -210,8 +211,6 @@ function showresults()
 
       //Set_New_Console_Msg("MQTT Message Recieved. "  + " Message: " + "\"" +  message.payloadString + "\"" + " MQTT Topic: " + "\"" + message.destinationName + "\"" + " QoS Value: " + "\"" + message.qos + "\"");
     } 
-
-*/
 
 
     // Document Ready Event

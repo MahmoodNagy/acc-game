@@ -31,8 +31,8 @@
         </div>
 		
 		<input onclick="ToggleCalculations()" type="button" id="startgame" value="Start"/>
-        <p>Correct shakes count is a random number between (1 : 15)</p>
-        <p style="visibility: hidden"><span id="random">1</span></p>
+        <h3>Correct shakes count is a random number between 1 : 15</h3>
+        <p>Will be deleted when database works well: <span id="random">1</span></p>
         
 		<h3>Published Messages: <span id='msgCount'></h3>
 		<div class="main">
@@ -54,11 +54,15 @@
 			</table>
             <p>Number of your shakes: <span id="shakes">0</span></p>
             <br>
+            
+            <p>Your points: <span id="points">0</span></p>
+            <br>
+            
+            <p>Your new random: <span id="new">0</span></p>
 
 		</div>
-				<input type="button" id="results" value="showresult"/>
+				<input type="button" id="results" value="showresult" onclick="showresults();"/>
 
-<!--
 			<div  class="main" id = "tb" style="display:none">
 		
 			<table class="data-table">
@@ -79,8 +83,6 @@
 				</tr>
 			</table>
 		</div>
--->
-            
 		<div class="iot-footer-pad"></div>
 	</div>
 	
@@ -181,7 +183,7 @@
                                     //}
                                 };
                       var message = new Paho.MQTT.Message(JSON.stringify(payload));
-                      message.destinationName = "Start";
+                      message.destinationName = "Game";
                       try {
 
 
@@ -205,47 +207,18 @@
                 
             }
             else if(!startFlag){
-                                //SEND MQTT MESSAGE
-                    setInterval(function() {
-                      //Your code
-                      //Send data
-                      //var x=Math.floor(Math.random() * 10000);
-                      var ClientID = document.getElementById("txt_MQTT_Client_ID").value;
-                      if (isConnected && !button_clicked) {
-                      var payload = "stop";
-                          
-                          /*{
-                                    //"d": {
-
-                                        "client_shakes": document.getElementById("shakes").textContent,
-                                        "random_shakes": document.getElementById("random").textContent,
-                                        "client_id": ClientID.toString(),
-                    
-                                    //}
-                                };*/
-                      var message = new Paho.MQTT.Message(JSON.stringify(payload));
-                      message.destinationName = "Stop";
-                      try {
-
-
-                               //Set_New_Console_Msg("Published " + "\"" + document.getElementById("txt_MQTT_Msg").value + "\"" + "to MQTT Topic: " + "\"" +  document.getElementById("txt_MQTT_Publish_Topic").value + "\"");
-                                changeConnectionStatusImage("images/connected.svg");
-                                document.getElementById("connection").innerHTML = "connected";
-
-                                MQTT_Client.send(message);
-
-                                } catch (err) {
-
-                                    console.error(err);
-                                    isConnected = false;
-                                    //MQTTconnect();
-                                    changeConnectionStatusImage("images/disconnected.svg");
-                                    document.getElementById("connection").innerHTML = "disconnected";
-                                    //setTimeout(connectDevice(), 1000);
-                                }
-                           }
-                    }, 10);
                 acl.stop();
+//                var rand = document.getElementById("rand").innerHTML;
+//                var shakes = document.getElementById("shakes").innerHTML;
+                
+                var r = document.getElementById("rand").innerHTML;
+                updateFieldIfNotNull('new', r, 0);
+
+//                 updateFieldIfNotNull('newRandom', rand);
+//                 updateFieldIfNotNull('newShakes', shakes);
+//                
+//                let points = checkWinner(rand, shakes);
+//                updateFieldIfNotNull('points', points);
 
             }
         }
