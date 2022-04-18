@@ -47,16 +47,6 @@ function Start(){
 						document.getElementById("result2").innerHTML = "";
 						document.getElementById("result3").innerHTML = "";
 
-	//SQL Script Prepare Tables
-	<customSQL>
-		CREATE TABLE current_clients (
-  client_id VARCHAR(45) PRIMARY KEY,
-  random_shakes int NOT NULL,
-  client_shakes int NOT NULL,
-  difference int AS (random_shakes - client_shakes)
-);
-
-        </customSQL>
     console.log("Started");
     startgame.removeEventListener("click", Start);
     startgame.addEventListener("click", Stop);
