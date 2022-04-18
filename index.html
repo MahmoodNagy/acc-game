@@ -118,7 +118,7 @@
         
         function updateFieldIfNotNull(fieldName, value, precision=10){
             if (value != null)
-                document.getElementById(fieldName).innerHTML = value.toFixed(2);
+                document.getElementById(fieldName).innerHTML = value.toFixed(precision);
             }
         
         let acl = new Accelerometer({frequency: 10});
@@ -150,7 +150,7 @@
                   is_counting = false;
                 }
 
-                updateFieldIfNotNull('shakes', shakes_count);
+                updateFieldIfNotNull('shakes', shakes_count, 0);
 
             });
 
@@ -164,7 +164,7 @@
             if(startFlag){
                 mainCalculations();
                 let randomNumber = generateRandom();
-                updateFieldIfNotNull('random', randomNumber);
+                updateFieldIfNotNull('random', randomNumber, 0);
             }
             else if(!startFlag){
                 acl.stop();
@@ -172,7 +172,7 @@
 //                var shakes = document.getElementById("shakes").innerHTML;
                 
                 var r = document.getElementById("rand").innerHTML;
-                updateFieldIfNotNull('new', r);
+                updateFieldIfNotNull('new', r, 0);
 
 //                 updateFieldIfNotNull('newRandom', rand);
 //                 updateFieldIfNotNull('newShakes', shakes);
