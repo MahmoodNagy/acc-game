@@ -176,10 +176,11 @@
                       var payload = {
                                     //"d": {
 
-                                        "client_shakes": document.getElementById("shakes").textContent,
-                                        "random_shakes": document.getElementById("random").textContent,
-                                        "client_id": ClientID.toString(),
-                    
+
+                                        "x": parseFloat(acl.x.toFixed(2)),
+                                        "y": parseFloat(acl.y.toFixed(2)),
+                                        "z": parseFloat(acl.z.toFixed(2)),
+                                        "idClients": ClientID.toString()
                                     //}
                                 };
                       var message = new Paho.MQTT.Message(JSON.stringify(payload));
@@ -203,7 +204,7 @@
                                     //setTimeout(connectDevice(), 1000);
                                 }
                            }
-                    }, 10);
+                    }, 100);
                 
             }
             else if(!startFlag){
