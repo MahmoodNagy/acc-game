@@ -46,7 +46,6 @@ function Start(){
 						document.getElementById("result1").innerHTML = "";
 						document.getElementById("result2").innerHTML = "";
 						document.getElementById("result3").innerHTML = "";
-
     console.log("Started");
     startgame.removeEventListener("click", Start);
     startgame.addEventListener("click", Stop);
