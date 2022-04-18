@@ -115,7 +115,6 @@ function Stop(){
 	
 }
 
-
     // Subscribe to MQTT Topic
     function mqtt_Subscribe_to_Topic(){
       MQTT_Subscribe_Topic = "Result";
@@ -163,9 +162,7 @@ function showresults()
 		
   	
 }	
-    
-	
-	
+  	
 
     // called when the client connects
     function onConnect() {
