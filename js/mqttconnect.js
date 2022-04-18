@@ -105,8 +105,6 @@ function Start(){
 
 function Stop(){
 	//MQTT_Client.disconnect();
-                var r = document.getElementById("rand").innerHTML;
-                updateFieldIfNotNull('new', r, 0);
     console.log("Stopped");
     startgame.removeEventListener("click", Stop);
     startgame.addEventListener("click", Start);
